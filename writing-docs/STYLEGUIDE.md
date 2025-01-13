@@ -43,7 +43,15 @@ Try to avoid absolute URLs.
 
     L<foo|/routine/foo>
 
-Works well instead.
+Works well instead. Specifically for types, follow this convention:
+
+    L<C<SomeClass>|/type/SomeClass>
+
+when referring to a type from another page, and
+
+    C<SomeClass>
+
+on its own page.
 
 If you have to use the full URL in the docs or elsewhere, ensure the
 subdomain is `docs` and the protocol is `https://` (as in
@@ -52,6 +60,18 @@ still work, for convenience, but they all simply redirect to the
 canonical version, so it's best to use it from the start.
 
 ## Language
+
+## Intent over syntax
+
+As noted in the discussion on [#1748](https://github.com/Raku/doc/issues/1748),
+When writing examples for documentation, do not merely show the syntax with an
+unreasonable example - for example, from the ticket:
+
+    lazy 1..5
+
+While this does show the syntax, it is not something one would write, and having
+examples that are too simplistic like this may lead to cargo culting or other
+bad practices.
 
 ### Unambiguous is better than short
 

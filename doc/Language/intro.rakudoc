@@ -1,0 +1,65 @@
+=begin pod :kind("Language") :subkind("Language") :category("beginning")
+
+=TITLE Brief introduction
+
+=SUBTITLE Using Raku official documentation
+
+This official documentation covers a variety of presentation styles.
+See the main L</introduction> and L</reference> pages for a list of documents in
+the following styles.
+
+=begin item
+Raku has a high level of L<unicode support|/language/unicode>, including
+many unicode operators. While this may be daunting for those coming from an
+ASCII background, we have some L<help|/language/unicode#Entering_unicode_codepoints_and_codepoint_sequences> introducing
+users to how to use it in your program. Finally, if you would really prefer
+to use ASCII, you can in L<most cases|/language/unicode_ascii>.
+=end item
+
+=begin item
+For programmers with experience in other languages, there are a number of
+B<Migration Guides> that compare and contrast the features of Raku with other
+languages, including Perl, JavaScript, and Haskell.
+=end item
+
+=begin item
+L<C<Signatures>|/type/Signature> - Each routine, which includes subroutines and
+methods, has a signature. Understanding the information given in the signature
+of a C<sub> or C<method> provides a quick way to grasp the operation and effect
+of the routine, and if provided in the signature, this may not be called out
+explicitly in the text.
+=end item
+
+=begin item
+L<C<Containers>|/language/containers> - Variables, which are like the nouns of
+a computer language, are containers in which information is stored. The first
+letter in the formal name of a container, such as the C<$> of C<$my-variable>, or
+C<@> of C<@an-array-of-things>, or C<%> of C<%the-scores-in-the-competition>, conveys
+information about the container. It should be noted, however, that you can store an
+L<C<Array>|/type/Array> in a C<$> container and treat it as a single object.
+=end item
+
+=begin item
+L<C<Classes and Roles>|/language/classtut> - Raku is fundamentally based on
+objects, which are described in terms of classes and roles. Raku, unlike some
+languages, does not B<impose> object-oriented programming practices, and useful
+programs can be written in a procedural style. However,
+complex software, such as the Rakudo compiler of Raku, is made much simpler
+by writing in object-oriented idioms, which is why the Raku documentation is
+more easily understood by reviewing what a class is and what a role is.
+=end item
+
+=begin item
+L<C<Traps to Avoid>|/language/traps> - Several common assumptions lead to code
+that does not work as the programmer intended. This section identifies some
+of them.
+=end item
+
+=begin item
+There are a number of L<C<useful resources>|https://raku.org/resources> listed
+on the raku.org site. These include articles, books, slide
+presentations, and videos.
+=end item
+
+
+=end pod

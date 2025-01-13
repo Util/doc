@@ -1,0 +1,181 @@
+=begin pod :kind("Language") :subkind("Language") :category("fundamental")
+
+=TITLE Unicode versus ASCII symbols
+
+=SUBTITLE Unicode symbols and their ASCII equivalents
+
+The following Unicode symbols can be used in Raku without needing to
+load any additional modules. Some of them have equivalents
+which can be typed with ASCII-only characters.
+
+Reference is made below to various properties of unicode codepoints.
+The definitive list can be found here:
+L<https://www.unicode.org/Public/UCD/latest/ucd/PropList.txt>.
+
+=head1 Alphabetic characters
+
+Any codepoint that has the C<Ll> (Letter, lowercase), C<Lu> (Letter,
+uppercase), C<Lt> (Letter, titlecase), C<Lm> (Letter, modifier), or
+the C<Lo> (Letter, other) property can be used just like any other
+alphabetic character from the ASCII range.
+
+=begin code
+my $Δ = 1;
+$Δ++;
+say $Δ;
+=end code
+
+=head1 Numeric characters
+
+Any codepoint that has the C<Nd> (Number, decimal digit) property, can
+be used as a digit in any number.  For example:
+
+  my $var = １９; # U+FF11 U+FF19
+  say $var + 2;   # OUTPUT: «21␤»
+
+=head1 Numeric values
+
+Any codepoint that has the C<No> (Number, other) or C<Nl> (Number, letter)
+property can be used standalone as a numeric value, such as ½ and ⅓. (These
+aren't decimal digit characters, so can't be combined.) For example:
+
+  my $var = ⅒ + 2 + Ⅻ; # here ⅒ is No and Rat and Ⅻ is Nl and Int
+  say $var;              # OUTPUT: «14.1␤»
+
+=head1 X<|Language,Whitespace> Whitespace characters
+
+Besides spaces and tabs, you can use any other unicode whitespace
+character that has the C<Zs> (Separator, space), C<Zl> (Separator,
+line), or C<Zp> (Separator, paragraph) property.
+
+See Wikipedia's L<Whitespace|https://en.m.wikipedia.org/wiki/Whitespace_character>
+section for detailed
+tables of the Unicode codepoints with (or associated with)
+whitespace characteristics. This is an important section for Raku
+authors of digital typography modules for print or web use.
+
+=head1 Other acceptable single codepoints
+
+This list contains the single codepoints [and their ASCII
+equivalents] that have a special meaning in Raku.
+
+X<|Reference,«>X<|Reference,»>X<|Reference,×>X<|Reference,÷>
+X<|Reference,≤>X<|Reference,≥>X<|Reference,≠>X<|Reference,−>
+X<|Reference,∘>X<|Reference,≅>X<|Reference,π>X<|Reference,τ>
+X<|Reference,𝑒>X<|Reference,∞>X<|Reference,…>X<|Reference,‘>
+X<|Reference,’>X<|Reference,‚>X<|Reference,“>X<|Reference,”>
+X<|Reference,„>X<|Reference,｢>X<|Reference,｣>X<|Reference,⁺>
+X<|Reference,⁻>X<|Reference,¯>X<|Reference,⁰>X<|Reference,¹>
+X<|Reference,²>X<|Reference,³>X<|Reference,⁴>X<|Reference,⁵>
+X<|Reference,⁶>X<|Reference,⁷>X<|Reference,⁸>X<|Reference,⁹>
+X<|Reference,∈>X<|Reference,∉>X<|Reference,∋>X<|Reference,∌>
+X<|Reference,≡>X<|Reference,≢>X<|Reference,⊆>X<|Reference,⊈>
+X<|Reference,⊂>X<|Reference,⊄>X<|Reference,⊇>X<|Reference,⊉>
+X<|Reference,⊃>X<|Reference,⊅>X<|Reference,≼>X<|Reference,≽>
+X<|Reference,∪>X<|Reference,∩>X<|Reference,∖>X<|Reference,⊖>
+X<|Reference,⊍>X<|Reference,⊎>
+=table
+  Symbol | Codepoint | ASCII      | Remarks
+  =======|===========|============|=========================
+  «      |  U+00AB   | <<         | as part of «» or .« or regex left word boundary
+  »      |  U+00BB   | >>         | as part of «» or .» or regex right word boundary
+  ×      |  U+00D7   | *          |
+  ÷      |  U+00F7   | /          |
+  ≤      |  U+2264   | <=         |
+  ≥      |  U+2265   | >=         |
+  ≠      |  U+2260   | !=         |
+  −      |  U+2212   | -          |
+  ∘      |  U+2218   | o          |
+  ≅      |  U+2245   | =~=        |
+  π      |  U+03C0   | pi         | 3.14159_26535_89793_238e0
+  τ      |  U+03C4   | tau        | 6.28318_53071_79586_476e0
+  𝑒      |  U+1D452  | e          | 2.71828_18284_59045_235e0
+  ∞      |  U+221E   | Inf        |
+  …      |  U+2026   | ...        |
+  ‘      |  U+2018   | '          | as part of ‘’ or ’‘
+  ’      |  U+2019   | '          | as part of ‘’ or ‚’ or ’‘
+  ‚      |  U+201A   | '          | as part of ‚‘ or ‚’
+  “      |  U+201C   | "          | as part of “” or ”“
+  ”      |  U+201D   | "          | as part of “” or ”“ or ””
+  „      |  U+201E   | "          | as part of „“ or „”
+  ｢      |  U+FF62   | Q//        | as part of ｢｣ (Note: Q// variant cannot be used bare in regexes)
+  ｣      |  U+FF63   | Q//        | as part of ｢｣ (Note: Q// variant cannot be used bare in regexes)
+  ⁺      |  U+207A   | \+          | (must use explicit number) as part of exponentiation
+  ⁻      |  U+207B   | -          | (must use explicit number) as part of exponentiation
+  ¯      |  U+00AF   | -          | (must use explicit number) as part of exponentiation (macron is an alternative way of writing a minus)
+  ⁰      |  U+2070   | **0        | can be combined with ⁰..⁹
+  ¹      |  U+00B9   | **1        | can be combined with ⁰..⁹
+  ²      |  U+00B2   | **2        | can be combined with ⁰..⁹
+  ³      |  U+00B3   | **3        | can be combined with ⁰..⁹
+  ⁴      |  U+2074   | **4        | can be combined with ⁰..⁹
+  ⁵      |  U+2075   | **5        | can be combined with ⁰..⁹
+  ⁶      |  U+2076   | **6        | can be combined with ⁰..⁹
+  ⁷      |  U+2077   | **7        | can be combined with ⁰..⁹
+  ⁸      |  U+2078   | **8        | can be combined with ⁰..⁹
+  ⁹      |  U+2079   | **9        | can be combined with ⁰..⁹
+  ∅      |  U+2205   | set()      | (empty set)
+  ∈      |  U+2208   | (elem)     |
+  ∉      |  U+2209   | !(elem)    |
+  ∋      |  U+220B   | (cont)     |
+  ∌      |  U+220C   | !(cont)    |
+  ≡      |  U+2261   | (==)       |
+  ≢      |  U+2262   | !(==)      |
+  ⊆      |  U+2286   | (<=)       |
+  ⊈      |  U+2288   | !(<=)      |
+  ⊂      |  U+2282   | (<)        |
+  ⊄      |  U+2284   | !(<)       |
+  ⊇      |  U+2287   | (>=)       |
+  ⊉      |  U+2289   | !(>=)      |
+  ⊃      |  U+2283   | (>)        |
+  ⊅      |  U+2285   | !(>)       |
+  ∪      |  U+222A   | (|)        |
+  ∩      |  U+2229   | (&)        |
+  ∖      |  U+2216   | (-)        |
+  ⊖      |  U+2296   | (^)        |
+  ⊍      |  U+228D   | (.)        |
+  ⊎      |  U+228E   | (+)        |
+
+=head2 Atomic operators
+
+The atomic operators have C<U+269B ⚛ ATOM SYMBOL> incorporated into them. Their
+ASCII equivalents are ordinary subroutines, not operators:
+
+    my atomicint $x = 42;
+    $x⚛++;                # Unicode version
+    atomic-fetch-inc($x); # ASCII version
+
+The ASCII alternatives are as follows:
+
+X<|Reference,⚛=>X<|Reference,⚛>X<|Reference,⚛+=>
+X<|Reference,⚛-=>X<|Reference,⚛−=>X<|Reference,++⚛>
+X<|Reference,⚛++>X<|Reference,--⚛>X<|Reference,⚛-->
+=table
+  Symbol | ASCII            | Remarks
+  ===============================================================
+  ⚛=  | atomic-assign    |
+  ⚛   | atomic-fetch     | this is the prefix:<⚛> operator
+  ⚛+= | atomic-add-fetch |
+  ⚛-= | atomic-sub-fetch |
+  ⚛−= | atomic-sub-fetch | this operator uses U+2212 minus sign
+  ++⚛ | atomic-inc-fetch |
+  ⚛++ | atomic-fetch-inc |
+  --⚛ | atomic-dec-fetch |
+  ⚛-- | atomic-fetch-dec |
+
+=head1 Multiple codepoints
+
+This list contains multiple-codepoint operators that require special
+composition for their ASCII equivalents.  Note the codepoints
+are shown space-separated but should be entered as adjacent codepoints
+when used.
+
+X<|Reference,»=»>X<|Reference,«=«>X<|Reference,«=»>X<|Reference,»=«>
+=table
+  Symbol | Codepoints       | ASCII   | Since | Remarks
+  =======|==================|=========|=======|=========================
+  »=»    | U+00BB = U+00BB  | >>[=]>> | v6.c  | uses ASCII '='
+  «=«    | U+00AB = U+00AB  | <<[=]<< | v6.c  | uses ASCII '='
+  «=»    | U+00AB = U+00BB  | <<[=]>> | v6.c  | uses ASCII '='
+  »=«    | U+00BB = U+00AB  | >>[=]<< | v6.c  | uses ASCII '='
+
+=end pod

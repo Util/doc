@@ -1,36 +1,36 @@
 {
-  "name": "p6doc",
-  "description": "Raku documentation (tools and docs)",
-  "version": "1.006d",
-  "perl": "6.*",
+  "name": "Raku doc",
+  "description": "Raku™ documentation",
+  "version": "2.0",
+  "raku": "6.*",
   "authors": [
-    "perl6"
+    "raku"
   ],
-  "auth": "perl6",
+  "auth": "raku",
   "test-depends": [
+    "Cro::HTTP::Client",
+    "HTTP::UserAgent",
     "File::Temp",
     "Test::META",
-    "Perl6::TypeGraph",
-    "Pod::To::HTML"
+    "Doc::TypeGraph"
   ],
-  "build-depends": [
-    "File::Find:ver<0.1.1+>"
-  ],
+  "build-depends": [],
   "provides": {
-    "Pod::Cache": "lib/Pod/Cache.pm6",
-    "Pod::Convenience": "lib/Pod/Convenience.pm6",
-    "Test-Files": "lib/Test-Files.pm6"
+      "Test-Files": "lib/Test-Files.rakumod",
+      "Pod::Cache": "lib/Pod/Cache.rakumod",
+      "Pod::Convenience": "lib/Pod/Convenience.rakumod"
   },
   "support": {
     "source": "git://github.com/Raku/doc.git"
   },
   "license": "Artistic-2.0",
   "tags": [
-    "perl6",
     "raku",
     "pod6",
+    "rakudoc",
     "documentation",
-    "reference"
+    "reference",
+    "perl6"
   ],
   "source-url": "git://github.com/Raku/doc.git",
   "meta6": "0"

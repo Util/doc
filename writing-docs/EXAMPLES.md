@@ -20,11 +20,28 @@ be for a better aligned result.
 The file `xt/examples-compilation.t` will test the code from all the
 examples. This file is run as part of `make xtest`.
 
+To test specific files (recommended), pass them as options on the command
+line to the test file, or set the environment variable TEST_FILES to
+a space separated list.
+
 Note that method signatures are also compiled. They have an implied block
 added to insure valid compilation.
 
 Care is taken to wrap the sample code in enough boilerplate so that no
 runtime code is executed, and that a class is available if needed.
+
+Note: because we are considering each POD code block independently,
+there is no guarantee that a partial snippet will itself be compilable.
+For this reason, it's fine to use `preamble` (see below) to give each
+block enough information to compile.
+
+For pedagogical reasons, it's
+OK to break what would otherwise be a large block of code into smaller
+chunks and discuss each one separately - we still want to do our best
+to compile these individual chunks. However, avoid this practice across
+methods on a Type/ page, which can be split up to show only a single method.
+Even on a Language/ page, avoid continuing an example for more than a
+page or so.
 
 ## Skipping or finessing tests
 
@@ -34,7 +51,8 @@ finesse it.
 
 ### Other languages
 
-We're just testing Raku here: to skip another language, use `:lang`
+We're just testing Raku here: to mark as another language, use `:lang`,
+and this will avoid testing:
 
     =begin code :lang<tcl>
     puts "this is not Perl"
@@ -150,3 +168,8 @@ is indented.
 
 The enclosed text is treated as code. The indentation level is
 relative to the indentation of the POD6 directives.
+
+##  Environment Variables
+
+* set `RAKU_DOC_TEST_VERBOSE` to a true value to display verbose messages during test suite run.
+* `RAKU_DOC_TEST_FUDGE` fudges `skip-test` code examples as TODO in `xt/examples-compilation.t` test.

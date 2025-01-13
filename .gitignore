@@ -1,37 +1,17 @@
-*.swp
-*~
-html/*.html
-html/css/app.css
-html/perl6.xhtml
-html/routine/
-html/type/
-html/op/
-html/language/
-html/programs/
-html/syntax/
-html/images/type-graph*
-html/js/search.js
-html/js/app.js
-.precomp
+# Precompilation folders
+lib/.precomp
 .pod-precomp
-assets/assetpack.db
-assets/cache
-.sass-cache/
-links.txt
-links.tmp
-xt/pws/aspell.pws
-highlights/node_modules
-**/npm-debug.log
-highlights/atom-language-perl6/
-.DS_store
-highlights/package-lock.json
 .pod-cache
+
+# Generated files for testing
+xt/pws/aspell.pws
 retest
-build/
-node_modules/
-package-lock.json
-*.epub
-.idea
+
+# Cached file for building pages
+util/Grammar.nqp
+
+# IDE
 *.iml
-.cache-doc
-precompiled/
+
+# website clone for testing
+doc-website
